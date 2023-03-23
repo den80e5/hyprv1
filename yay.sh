@@ -1,1 +1,0 @@
-yay -S hyprland-git sddm-git waybar-hyprland-git xfce-polkit rofi-lbonn-wayland-git swaylock-effects-git swww wlogout hyprpicker-git xdg-desktop-portal-hyprland-git cava nwg-look --needed
