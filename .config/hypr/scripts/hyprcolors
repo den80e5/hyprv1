@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
+## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+
+## A script to get colours from the theme file & deploy it to polybar, alacritty, rofi & dunst.
+
+DIR="$HOME/.config/hypr"
+
+## Current theme ---------------------------------------------#
+source "$DIR"/themes/current.bash
+
+## Get colors
+getcolors () {
+	FOREGROUND="$foreground"
+	BACKGROUND="$background"
+	CURSOR="$cursor"
+	BLACK="$color0"
+	RED="$color1"
+	GREEN="$color2"
+	YELLOW="$color3"
+	BLUE="$color4"
+	MAGENTA="$color5"
+	CYAN="$color6"
+	WHITE="$color7"
+	ALTBLACK="$color8"
+	ALTRED="$color9"
+	ALTGREEN="$color10"
+	ALTYELLOW="$color11"
+	ALTBLUE="$color12"
+	ALTMAGENTA="$color13"
+	ALTCYAN="$color14"
+	ALTWHITE="$color15"
+}
+
+colalac () {
+	cat > "$DIR"/alacritty/colors.yml <<- _EOF_
+		## Colors configuration
+		colors:
+		  # Default colors
+		  primary:
+		    background: '${BACKGROUND}'
+		    foreground: '${FOREGROUND}'
+
+		  # Normal colors
+		  normal:
+		    black:   '${BLACK}'
+		    red:     '${RED}'
+		    green:   '${GREEN}'
+		    yellow:  '${YELLOW}'
+		    blue:    '${BLUE}'
+		    magenta: '${MAGENTA}'
+		    cyan:    '${CYAN}'
+		    white:   '${WHITE}'
+
+		  # Bright colors
+		  bright:
+		    black:   '${ALTBLACK}'
+		    red:     '${ALTRED}'
+		    green:   '${ALTGREEN}'
+		    yellow:  '${ALTYELLOW}'
+		    blue:    '${ALTBLUE}'
+		    magenta: '${ALTMAGENTA}'
+		    cyan:    '${ALTCYAN}'
+		    white:   '${ALTWHITE}'
+	_EOF_
+}
+
+colfoot () {
+	cat > "$DIR"/foot/colors.ini <<- _EOF_
+		[colors]
+		alpha =	1.0
+		foreground =	${FOREGROUND}
+		background =	${BACKGROUND}
+
+		## Normal/regular colors (color palette 0-7)
+		regular0 =	${BLACK}  # black
+		regular1 =	${RED}  # red
+		regular2 =	${GREEN}  # green
+		regular3 =	${YELLOW}  # yellow
+		regular4 =	${BLUE}  # blue
+		regular5 =	${MAGENTA}  # magenta
+		regular6 =	${CYAN}  # cyan
+		regular7 =	${WHITE}  # white
+
+		## Bright colors (color palette 8-15)
+		bright0 =	${ALTBLACK}   # bright black
+		bright1 =	${ALTRED}   # bright red
+		bright2 =	${ALTGREEN}   # bright green
+		bright3 =	${ALTYELLOW}   # bright yellow
+		bright4 =	${ALTBLUE}   # bright blue
+		bright5 =	${ALTMAGENTA}   # bright magenta
+		bright6 =	${ALTCYAN}   # bright cyan
+		bright7 =	${ALTWHITE}   # bright white
+	_EOF_
+}
+
+## Write rofi colors.rasi file with current theme colors
+colrofi () {
+	cat > "$DIR"/rofi/themes/colors.rasi <<- EOF	
+	* {
+	    background:			${BACKGROUND};
+	    foreground:			${FOREGROUND};
+	    selected:			${BLUE};
+	    highlight:			${YELLOW};
+	    urgent:				${RED};
+	    on:					${GREEN};
+	    off:				${RED};
+	}
+	EOF
+}
+
+
+## Execute functions and run main 
+main () {
+	getcolors
+	colalac
+	colfoot
+	colrofi
+}
+
+main

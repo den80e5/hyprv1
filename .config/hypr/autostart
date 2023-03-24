@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
+##
+## Autostart Programs
+
+# Kill already running process
+_ps=(waybar mako mpd xfce-polkit)
+for _prs in "${_ps[@]}"; do
+	if [[ `pidof ${_prs}` ]]; then
+		killall -9 ${_prs}
+	fi
+done
+
+# Polkit agent
+/usr/lib/xfce-polkit/xfce-polkit &
+
+
+# Apply themes
+~/.config/hypr/scripts/gtkthemes &
+
+~/.config/hypr/scripts/hyprcolors &
+
+# Lauch notification daemon (mako)
+~/.config/hypr/scripts/notifications &
+
+# Lauch statusbar (waybar)
+~/.config/hypr/scripts/statusbar &
+
+# Start mpd
+exec mpd &
+
+# Brightness
+gammastep -l 0:0 -o -t 6500:6500 -b 0.78:0.85 &
+
+# Set wallpaper
+$HOME/.config/hypr/scripts/wallpaper_startup &

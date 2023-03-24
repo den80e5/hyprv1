@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+pkill -f /home/deni/.config/hypr/scripts/wallpaper
+$HOME/.config/hypr/scripts/wallpaper

@@ -1,0 +1,1 @@
+pacman -S pacman-contrib base-devel git curl wget networkmanager wofi grim slurp wl-clipboard libnotify alacritty kitty foot thunar geany mako mpd ncmpcpp lxappearance gtk4 gtk3 gtk2 qt5ct qt6ct viewnior firefox vlc --needed

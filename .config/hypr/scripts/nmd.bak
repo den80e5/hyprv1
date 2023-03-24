@@ -1,0 +1,5 @@
+if [[ ! `pidof nmd` ]]; then
+	nmd
+else
+	pkill nmd
+fi

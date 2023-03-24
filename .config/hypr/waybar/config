@@ -1,0 +1,27 @@
+// Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
+//
+// Waybar config file
+{
+    "include": "~/.config/hypr/waybar/modules",
+    "name": "main-bar", 
+    "id": "main-bar",   
+    "layer": "top",     
+    "mode": "dock",     
+    "exclusive": true,  
+    "passthrough": false, 
+    "position": "top",  
+    "height": 25,       
+    "width": "",        
+    "spacing": 10,       
+    "margin": 0,        
+    "margin-top": 15,    
+    "margin-bottom": 0,
+    "margin-left": 15,   
+    "margin-right": 15,  
+    "fixed-center": true, 
+    "ipc": true,        
+ 
+    "modules-left": ["cpu", "memory", "disk", "custom/updater"],
+    "modules-center": ["wlr/workspaces", "mpd", "tray"],
+    "modules-right": ["pulseaudio", "custom/weather", "network", "battery", "clock", "custom/wallpaper", "custom/colorpicker", "custom/power"],
+}
